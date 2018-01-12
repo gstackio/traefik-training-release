@@ -1,7 +1,8 @@
 ---
 name: traefik
 
-templates: {}
+templates:
+  conf/traefik.toml: conf/traefik.toml
 
 packages:
   - traefik
