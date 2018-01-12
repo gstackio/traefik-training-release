@@ -2,6 +2,7 @@
 name: traefik
 
 templates:
+  bin/traefik_ctl: bin/traefik_ctl
   conf/traefik.toml: conf/traefik.toml
 
 packages:

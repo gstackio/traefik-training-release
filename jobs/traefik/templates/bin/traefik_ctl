@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -ex
+
+# Log files init
+mkdir -p /var/vcap/data/sys/log/traefik
+chown vcap:vcap /var/vcap/data/sys/log/traefik
+
+date +%F_%T >> /var/vcap/data/sys/log/traefik/traefik_ctl.stdout.log
+date +%F_%T >> /var/vcap/data/sys/log/traefik/traefik_ctl.stderr.log
+exec 1>> /var/vcap/data/sys/log/traefik/traefik_ctl.stdout.log
+exec 2>> /var/vcap/data/sys/log/traefik/traefik_ctl.stderr.log
+chown vcap:vcap /var/vcap/data/sys/log/traefik/traefik_ctl.std{out,err}.log
+
+case $1 in
+    start)
+        mkdir -p /var/vcap/data/sys/run/traefik
+        echo $$ > /var/vcap/data/sys/run/traefik/traefik.pid
+
+        exec /var/vcap/packages/traefik/bin/traefik \
+            -c /var/vcap/jobs/traefik/conf/traefik.toml
+        ;;
+    stop)
+        kill "$(cat /var/vcap/data/sys/run/traefik/traefik.pid)"
+        rm -f /var/vcap/data/sys/run/traefik/traefik.pid
+        ;;
+    *)
+        echo "Usage: $(basename "$0") <start|stop>" >&2
+        exit 2
+        ;;
+esac
