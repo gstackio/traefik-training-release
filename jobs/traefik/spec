@@ -3,6 +3,7 @@ name: traefik
 
 templates: {}
 
-packages: []
+packages:
+  - traefik
 
 properties: {}
