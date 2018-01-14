@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+pidfile="/var/vcap/data/sys/run/traefik/traefik.pid"
+
+/sbin/start-stop-daemon \
+  --pidfile "$pidfile" \
+  --retry TERM/20/QUIT/5/KILL \
+  --oknodo \
+  --stop
+
+# Note: the --remove-pidfile option is available as of version 1.17.19 of
+# start-stop-daemon, and the stemcell only provides version 1.17.5. Thus we
+# need to remove the pidfile by ourselves.
+rm -f "$pidfile"

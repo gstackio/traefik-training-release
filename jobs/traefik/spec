@@ -2,7 +2,8 @@
 name: traefik
 
 templates:
-  bin/traefik_ctl: bin/traefik_ctl
+  bin/start: bin/start
+  bin/stop: bin/stop
   conf/traefik.toml: conf/traefik.toml
 
 packages:

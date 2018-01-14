@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+log_dir=/var/vcap/data/sys/log/traefik
+run_dir=/var/vcap/data/sys/run/traefik
+pidfile="$run_dir/traefik.pid"
+
+mkdir -p "$log_dir" "$run_dir"
+chown vcap:vcap "$log_dir" "$run_dir"
+
+date +%F_%T >> $log_dir/traefik.out.log
+date +%F_%T >> $log_dir/traefik.err.log
+
+/sbin/start-stop-daemon \
+  --pidfile "$pidfile" \
+  --make-pidfile \
+  --start \
+  --exec /var/vcap/packages/traefik/bin/traefik \
+   >> "$log_dir/traefik.out.log" \
+  2>> "$log_dir/traefik.err.log"
