@@ -1,0 +1,35 @@
+---
+name: traefik-benjamin
+
+instance_groups:
+  - name: traefik
+    instances: 1
+    azs: [ z1 ]
+    jobs:
+      - name: traefik
+        release: traefik-benjamin
+        properties: {}
+    stemcell: default
+    vm_type: default
+    networks:
+      - name: default
+    vm_extensions:
+      - expose-port-15014-on-loadbalancer
+
+update:
+  serial: true # instance groups to be deployed sequentially.
+
+  canaries: 1
+  canary_watch_time: 1000-5000
+
+  max_in_flight: 1
+  update_watch_time: 1000-5000
+
+releases:
+  - name: traefik-benjamin
+    version: latest
+
+stemcells:
+  - alias: default
+    os: ubuntu-trusty
+    version: latest
