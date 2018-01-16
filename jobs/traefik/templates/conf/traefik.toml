@@ -38,7 +38,7 @@ defaultEntryPoints = ["http"]
 # Default:
 [entryPoints]
     [entryPoints.http]
-    address = ":80"
+    address = ":10014"
 
 # Enable access logs
 # By default it will write to stdout and produce logs in the textual
