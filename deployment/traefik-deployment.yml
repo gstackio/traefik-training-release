@@ -8,13 +8,15 @@ instance_groups:
     jobs:
       - name: traefik
         release: traefik-benjamin
+        consumes:
+          sample-app: { from: sample-app-benjamin, deployment: sample-app-benjamin }
         properties: {}
     stemcell: default
     vm_type: default
     networks:
       - name: default
     vm_extensions:
-      - expose-port-15014-on-loadbalancer
+      - expose-ports-1x014-on-loadbalancer
 
 update:
   serial: true # instance groups to be deployed sequentially.
