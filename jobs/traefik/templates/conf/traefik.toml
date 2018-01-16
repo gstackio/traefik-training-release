@@ -77,7 +77,17 @@ defaultEntryPoints = ["http"]
 address = ":15014"
 
 ################################################################
-# Docker configuration backend
+# File configuration backend
 ################################################################
 
-# Enable Docker configuration backend
+[file]
+
+[backends]
+  [backends.sample-app]
+    [backends.sample-app.servers.sample-app-0]
+    url = "http://<%= link('sample-app').instances[0].address %>:<%= link('sample-app').p('port') %>"
+[frontends]
+  [frontends.sample-app-benjamin]
+  backend = "sample-app"
+    [frontends.sample-app-benjamin.routes.route-1]
+    rule = "Host: benjamin.bosh-training.prototyp.it"
