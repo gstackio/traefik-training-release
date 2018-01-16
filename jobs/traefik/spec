@@ -9,4 +9,8 @@ templates:
 packages:
   - traefik
 
+consumes:
+  - name: sample-app
+    type: web-app
+
 properties: {}
