@@ -84,8 +84,10 @@ address = ":15014"
 
 [backends]
   [backends.sample-app]
-    [backends.sample-app.servers.sample-app-0]
-    url = "http://<%= link('sample-app').instances[0].address %>:<%= link('sample-app').p('port') %>"
+<% link('sample-app').instances.each do |instance| %>
+    [backends.sample-app.servers.sample-app-<%= instance.index %>]
+    url = "http://<%= instance.address %>:<%= link('sample-app').p('port') %>"
+<% end %>
 [frontends]
   [frontends.sample-app-benjamin]
   backend = "sample-app"
