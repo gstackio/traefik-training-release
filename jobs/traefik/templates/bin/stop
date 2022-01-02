@@ -11,6 +11,6 @@ pidfile="/var/vcap/data/sys/run/traefik/traefik.pid"
   --stop
 
 # Note: the --remove-pidfile option is available as of version 1.17.19 of
-# start-stop-daemon, and the stemcell only provides version 1.17.5. Thus we
+# start-stop-daemon, but Ubuntu stemcells only provide version 1.17.5. Thus we
 # need to remove the pidfile by ourselves.
 rm -f "$pidfile"
