@@ -33,5 +33,5 @@ releases:
 
 stemcells:
   - alias: default
-    os: ubuntu-trusty
+    os: ubuntu-bionic
     version: latest
