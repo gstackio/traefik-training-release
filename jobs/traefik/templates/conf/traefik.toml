@@ -92,4 +92,4 @@ address = ":15014"
   [frontends.sample-app-benjamin]
   backend = "sample-app"
     [frontends.sample-app-benjamin.routes.route-1]
-    rule = "Host: benjamin.bosh-training.prototyp.it"
+    rule = "Host: benjamin.bosh.training.gstack.io"
