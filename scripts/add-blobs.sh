@@ -2,12 +2,12 @@
 
 set -ex
 
-version=1.4.6
+version="1.7.34"
 
 if [ ! -f "traefik-${version}_linux-amd64" -a ! -f "traefik-${version}_linux-amd64.gz" ]; then
     curl -L "https://github.com/containous/traefik/releases/download/v$version/traefik_linux-amd64" \
         -o "traefik-${version}_linux-amd64"
-    echo "ce46543db09c8b885e71d8a3b89251ba4b9e1bee56f238cc05651c9eb29e32b2  traefik-${version}_linux-amd64" \
+    echo "54fc261ff3ebb2568c9e32e6ae665d6f22e4c922a2c11b348771d5b143226ef1  traefik-${version}_linux-amd64" \
         | shasum -a 256 --check
 fi
 
